@@ -1,10 +1,9 @@
-import { Button, Grid, TextField, Typography } from '@mui/material';
-import { Container } from '@mui/system';
+import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import login from '../../../images/login.png';
 
-const Login = () => {
+const Register = () => {
     const [loginData, setLoginData] = useState({});
     const handleOnChange = e => {
         const field = e.target.name;
@@ -14,20 +13,23 @@ const Login = () => {
         setLoginData(newLoginData);
     }
     const handleLoginSubmit = e => {
-        alert('hello');
+        if (loginData.password !== loginData.password2) {
+            alert('password did not mathch');
+        }
         e.preventDefault();
     }
     return (
         <Container>
             <Grid container spacing={2}>
                 <Grid sx={{ mt: 8 }} item xs={12} md={6}>
-                    <Typography variant='body1'>Login</Typography>
+                    <Typography variant='body1'>Registration</Typography>
                     <form onSubmit={handleLoginSubmit}>
                         <TextField
                             sx={{ width: '75%', m: 1 }}
                             id="standard-basic"
                             label="Your Email"
                             name='email'
+                            type='email'
                             onChange={handleOnChange}
                             variant="standard" /> <br />
                         <TextField
@@ -38,8 +40,16 @@ const Login = () => {
                             name='password'
                             onChange={handleOnChange}
                             variant="standard" />
-                        <Button variant='contained' type='submit' sx={{ width: '75%', m: 1 }}>Login</Button>
-                        <Link to='/register' style={{ textDecoration: 'none' }}><Button variant='text'>New User? Please Register</Button></Link>
+                        <TextField
+                            sx={{ width: '75%', m: 1 }}
+                            id="standard-basic"
+                            type='password'
+                            label="Re-Enter Password"
+                            name='password'
+                            onChange={handleOnChange}
+                            variant="standard" />
+                        <Button variant='contained' type='submit' sx={{ width: '75%', m: 1 }}>Register</Button>
+                        <Link to='/login' style={{ textDecoration: 'none' }}><Button variant='text'>Already Registered? Please Login</Button></Link>
                     </form>
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -51,4 +61,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
