@@ -8,7 +8,7 @@ import login from '../../../images/login.png';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({});
-    const { user, loginUser, isLoading, authError } = useAuth();
+    const { user, loginUser, isLoading, authError, signInWithGoogle } = useAuth();
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -24,6 +24,9 @@ const Login = () => {
         loginUser(loginData.email, loginData.password, location, navigate);
         e.preventDefault();
     }
+    const handleGoogleSignIn = () => {
+        signInWithGoogle(location, navigate);
+    }
     return (
         <Container>
             <Grid container spacing={2}>
@@ -35,7 +38,7 @@ const Login = () => {
                             id="standard-basic"
                             label="Your Email"
                             name='email'
-                            onChange={handleOnChange}
+                            onBlur={handleOnChange}
                             variant="standard" /> <br />
                         <TextField
                             sx={{ width: '75%', m: 1 }}
@@ -43,7 +46,7 @@ const Login = () => {
                             type='password'
                             label="Your Password"
                             name='password'
-                            onChange={handleOnChange}
+                            onBlur={handleOnChange}
                             variant="standard" />
                         <Button variant='contained' type='submit' sx={{ width: '75%', m: 1 }}>Login</Button>
                         <Link to='/register' style={{ textDecoration: 'none' }}><Button variant='text'>New User? Please Register</Button></Link>
@@ -58,6 +61,7 @@ const Login = () => {
                         authError && <Alert severity="error">{authError}</Alert>
 
                     }
+                    <Button onClick={handleGoogleSignIn} variant='text'>Google Signin</Button>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <img style={{ width: "100%" }} src={login} alt="" />
