@@ -41,9 +41,9 @@ const useFirebase = () => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                setAuthError('');
                 const destination = location?.state?.from.pathname || '/';
                 navigate(destination);
-                setAuthError('');
 
             })
             .catch((error) => {
