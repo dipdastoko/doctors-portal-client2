@@ -3,6 +3,9 @@ import './App.css';
 import AuthProvider from './Context/AuthProvider/AuthProvider';
 import Appointment from './Pages/Appointment/Appointment/Appointment';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
+import DashboardHome from './Pages/Dashboard/Dashboard/Dashboard/DashboardHome';
+import MakeAdmin from './Pages/Dashboard/Dashboard/MakeAdmin/MakeAdmin';
+import MakeDoctor from './Pages/Dashboard/Dashboard/MakeDoctor/MakeDoctor';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
@@ -21,7 +24,12 @@ function App() {
             </PrivateRoute>} />
             <Route path='/dashboard' element={<PrivateRoute>
               <Dashboard />
-            </PrivateRoute>} />
+            </PrivateRoute>} >
+
+              <Route index element={<DashboardHome />} />
+              <Route path='makeAdmin' element={<MakeAdmin />} />
+              <Route path='makeDoctor' element={<MakeDoctor />} />
+            </Route>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
           </Routes>

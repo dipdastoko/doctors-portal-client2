@@ -16,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const drawerWidth = 200;
 
@@ -33,6 +33,9 @@ function Dashboard(props) {
             <Toolbar />
             <Divider />
             <Link to='/appointment'><Button color='inherit'>Appointment</Button></Link>
+            <Link to='/dashboard'><Button color='inherit'>Dashboard</Button></Link>
+            <Link to='/dashboard/makeAdmin'><Button color='inherit'>Make Admin</Button></Link>
+            <Link to='/dashboard/makeDoctor'><Button color='inherit'>Add Doctor</Button></Link>
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem key={text} disablePadding>
@@ -112,7 +115,7 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-
+                <Outlet />
             </Box>
         </Box>
     );
