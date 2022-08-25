@@ -17,12 +17,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import { Link, Outlet } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const { admin } = useAuth();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -34,8 +36,12 @@ function Dashboard(props) {
             <Divider />
             <Link to='/appointment'><Button color='inherit'>Appointment</Button></Link>
             <Link to='/dashboard'><Button color='inherit'>Dashboard</Button></Link>
-            <Link to='/dashboard/makeAdmin'><Button color='inherit'>Make Admin</Button></Link>
-            <Link to='/dashboard/makeDoctor'><Button color='inherit'>Add Doctor</Button></Link>
+            {
+                admin && <Box>
+                    <Link to='/dashboard/makeAdmin'><Button color='inherit'>Make Admin</Button></Link>
+                    <Link to='/dashboard/makeDoctor'><Button color='inherit'>Add Doctor</Button></Link>
+                </Box>
+            }
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem key={text} disablePadding>
