@@ -48,7 +48,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
             date: date.toLocaleDateString()
         }
         // send data to the server
-        fetch('http://localhost:5000/appointments', {
+        fetch('https://hidden-atoll-00158.herokuapp.com/appointments', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
