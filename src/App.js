@@ -7,6 +7,7 @@ import DashboardHome from './Pages/Dashboard/Dashboard/Dashboard/DashboardHome';
 import MakeAdmin from './Pages/Dashboard/Dashboard/MakeAdmin/MakeAdmin';
 import MakeDoctor from './Pages/Dashboard/Dashboard/MakeDoctor/MakeDoctor';
 import Home from './Pages/Home/Home/Home';
+import AdminRoute from './Pages/Login/AdminRoute/AdminRoute';
 import Login from './Pages/Login/Login/Login';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import Register from './Pages/Login/Register/Register';
@@ -27,8 +28,16 @@ function App() {
             </PrivateRoute>} >
 
               <Route index element={<DashboardHome />} />
-              <Route path='makeAdmin' element={<MakeAdmin />} />
-              <Route path='makeDoctor' element={<MakeDoctor />} />
+              <Route path='makeAdmin' element={
+                <AdminRoute>
+                  <MakeAdmin />
+                </AdminRoute>
+              } />
+              <Route path='makeDoctor' element={
+                <AdminRoute>
+                  <MakeDoctor />
+                </AdminRoute>
+              } />
             </Route>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
